@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw(Mixin::Event::Dispatch);
 
-our $VERSION = '0.001';
+our $VERSION = '0.100';
 
 =head1 NAME
 
@@ -12,7 +12,7 @@ HTTP::StreamParser - support for streaming HTTP request/response parsing
 
 =head1 VERSION
 
-version 0.001
+version 0.100
 
 =head1 SYNOPSIS
 
@@ -256,7 +256,7 @@ Parse URI information. Anything up to whitespace.
 sub http_uri {
 	my $self = shift;
 	my $buf = shift;
-	if($$buf =~ s/^([^ ]*)(?=\s)//) {
+	if($$buf =~ s{^(.*)(\s+http/\d+\.\d+$CRLF)}{$2}i) {
 		$self->{uri} = $1;
 		$self->invoke_event(http_uri => $self->{uri});
 		$self->next_state;
@@ -273,7 +273,7 @@ Parse HTTP version information. Typically expects HTTP/1.1.
 sub http_version {
 	my $self = shift;
 	my $buf = shift;
-	if($$buf =~ s{^(HTTP)/(\d+.\d+)(?=\s)}{}) {
+	if($$buf =~ s{^(HTTP)/(\d+.\d+)(?=\s)}{}i) {
 		$self->{proto} = $1;
 		$self->{version} = $2;
 		$self->invoke_event(http_version => $self->{proto}, $self->{version});
@@ -294,7 +294,7 @@ Parse HTTP header lines.
 sub http_headers {
 	my $self = shift;
 	my $buf = shift;
-	while($$buf =~ s{^([^:]+):(?: )+(.*?)$CRLF}{}) {
+	while($$buf =~ s{^([^:]+):(?: )*([^$CRLF]+)$CRLF}{}) {
 		my $k = $1;
 		my $v = $2;
 		$self->{remaining} = 0+$v if lc($k) eq 'content-length';
