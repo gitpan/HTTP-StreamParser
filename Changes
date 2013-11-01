@@ -1,5 +1,11 @@
 Revision history for HTTP-StreamParser
 
+0.101     2013-11-01 05:27:02 Europe/London
+	No functional changes
+
+	Dependency fixes:
+	* Require perl 5.10.1+ due to //
+
 0.100     2013-10-31 01:46:26 Europe/London
 	Bug fixes:
 	* More lenient when parsing request/response data with

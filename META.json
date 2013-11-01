@@ -14,6 +14,11 @@
    },
    "name" : "HTTP-StreamParser",
    "prereqs" : {
+      "build" : {
+         "requires" : {
+            "perl" : "5.010001"
+         }
+      },
       "configure" : {
          "requires" : {
             "ExtUtils::MakeMaker" : "6.48"
@@ -49,6 +54,6 @@
       },
       "homepage" : "http://search.cpan.org/dist/HTTP-StreamParser/"
    },
-   "version" : "0.100"
+   "version" : "0.101"
 }
 

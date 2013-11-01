@@ -1,6 +1,6 @@
 package HTTP::StreamParser::Response;
 {
-  $HTTP::StreamParser::Response::VERSION = '0.100';
+  $HTTP::StreamParser::Response::VERSION = '0.101';
 }
 use strict;
 use warnings;
@@ -12,7 +12,7 @@ HTTP::StreamParser::Response - streaming parser for HTTP response data
 
 =head1 VERSION
 
-version 0.100
+version 0.101
 
 =head1 SYNOPSIS
 

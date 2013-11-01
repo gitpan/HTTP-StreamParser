@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw(Mixin::Event::Dispatch);
 
-our $VERSION = '0.100';
+our $VERSION = '0.101';
 
 =head1 NAME
 
@@ -12,7 +12,7 @@ HTTP::StreamParser - support for streaming HTTP request/response parsing
 
 =head1 VERSION
 
-version 0.100
+version 0.101
 
 =head1 SYNOPSIS
 
